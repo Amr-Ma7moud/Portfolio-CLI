@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root,
+  [data-theme="green"] {
+    --background: 0 0% 0%;
+    --foreground: 130 100% 50%;
+
+    --card: 210 10% 5%;
+    --card-foreground: 130 100% 50%;
+
+    --popover: 0 0% 0%;
+    --popover-foreground: 130 100% 50%;
+
+    --primary: 130 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 210 10% 8%;
+    --secondary-foreground: 130 100% 50%;
+
+    --muted: 210 10% 12%;
+    --muted-foreground: 130 60% 40%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 0%;
+
+    --amber: 45 100% 50%;
+    --amber-foreground: 0 0% 0%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 0%;
+
+    --border: 130 100% 20%;
+    --input: 130 100% 15%;
+    --ring: 130 100% 50%;
+
+    --radius: 0px;
+
+    --terminal-glow: 0 0 10px hsl(130 100% 50% / 0.5);
+    --text-glow: 0 0 8px hsl(130 100% 50% / 0.8);
+  }
+
+  /* Amber Theme */
+  [data-theme="amber"] {
+    --foreground: 45 100% 50%;
+    --card-foreground: 45 100% 50%;
+    --popover-foreground: 45 100% 50%;
+    --primary: 45 100% 50%;
+    --secondary-foreground: 45 100% 50%;
+    --muted-foreground: 45 60% 40%;
+    --accent: 30 100% 60%;
+    --border: 45 100% 20%;
+    --input: 45 100% 15%;
+    --ring: 45 100% 50%;
+    --terminal-glow: 0 0 10px hsl(45 100% 50% / 0.5);
+    --text-glow: 0 0 8px hsl(45 100% 50% / 0.8);
+  }
+
+  /* Cyan Theme */
+  [data-theme="cyan"] {
+    --foreground: 180 100% 50%;
+    --card-foreground: 180 100% 50%;
+    --popover-foreground: 180 100% 50%;
+    --primary: 180 100% 50%;
+    --secondary-foreground: 180 100% 50%;
+    --muted-foreground: 180 60% 40%;
+    --accent: 200 100% 60%;
+    --border: 180 100% 20%;
+    --input: 180 100% 15%;
+    --ring: 180 100% 50%;
+    --terminal-glow: 0 0 10px hsl(180 100% 50% / 0.5);
+    --text-glow: 0 0 8px hsl(180 100% 50% / 0.8);
+  }
+
+  /* White Theme */
+  [data-theme="white"] {
+    --foreground: 0 0% 90%;
+    --card-foreground: 0 0% 90%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 0 0% 100%;
+    --secondary-foreground: 0 0% 90%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 80%;
+    --border: 0 0% 30%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 100%;
+    --terminal-glow: 0 0 10px hsl(0 0% 100% / 0.3);
+    --text-glow: 0 0 8px hsl(0 0% 100% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono antialiased;
+    font-family: 'JetBrains Mono', monospace;
+    text-shadow: var(--text-glow);
+  }
+
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/30;
+    border-radius: 0;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/50;
+  }
+}
+
+@layer components {
+  .terminal-link {
+    @apply text-accent cursor-pointer transition-all duration-150;
+  }
+
+  .terminal-link:hover {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  .terminal-prompt {
+    @apply text-muted-foreground;
+  }
+
+  .terminal-success {
+    @apply text-primary;
+  }
+
+  .terminal-error {
+    @apply text-destructive;
+  }
+
+  .terminal-warning {
+    @apply text-amber;
+  }
+
+  .scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  }
+
+  .crt-flicker {
+    animation: flicker 0.15s infinite;
+  }
+
+  .glow-text {
+    text-shadow: var(--text-glow);
+  }
+
+  .terminal-box {
+    @apply border border-border p-4 bg-card/50;
+    box-shadow: var(--terminal-glow);
+  }
+}
+
+@layer utilities {
+  .text-amber {
+    color: hsl(var(--amber));
+  }
+
+  .bg-amber {
+    background-color: hsl(var(--amber));
+  }
+
+  .animate-glitch {
+    animation: glitch 0.3s ease-in-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+}
+
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  50% { opacity: 1; }
+  100% { opacity: 0.98; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes boot-fade {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.typing-effect {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 2s steps(40, end);
+}
+

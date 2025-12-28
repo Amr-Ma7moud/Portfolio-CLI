@@ -1,0 +1,188 @@
+{
+  "profile": {
+    "name": "Amr Mahmoud",
+    "roles": [
+      "Full Stack Web Developer",
+      "Android Developer",
+      "CS Student"
+    ],
+    "location": "Alexandria, Egypt",
+    "tagline": "What I can't make, I don't understand.",
+    "email": "amr.mahmoud.dev05@gmail.com",
+    "socials": [
+      {
+        "platform": "github",
+        "url": "https://github.com/Amr-Ma7moud",
+        "label": "GitHub"
+      },
+      {
+        "platform": "linkedin",
+        "url": "https://linkedin.com/in/amr-mahmoud-dev",
+        "label": "LinkedIn"
+      },
+      {
+        "platform": "whatsapp",
+        "url": "https://wa.me/201234567890",
+        "label": "WhatsApp"
+      },
+      {
+        "platform": "email",
+        "url": "mailto:amr.mahmoud.dev05@gmail.com",
+        "label": "Email"
+      }
+    ]
+  },
+  "about": {
+    "university": "E-JUST (Egypt-Japan University of Science and Technology)",
+    "degree": "Bachelor of Science in Computer Science",
+    "graduationYear": "2027",
+    "gpa": "3.58",
+    "bio": "Computer Science student passionate about building full-stack web applications and Android apps. I believe in learning by doing and always strive to understand the fundamentals of what I create.",
+    "currentRoles": [
+      "DEPI Trainee (Android Development)",
+      "E-JUST IT Intern (Laravel/Backend)",
+      "ISF Scholar"
+    ],
+    "interests": [
+      "Building full-stack web applications",
+      "Android app development",
+      "Clean code and best practices",
+      "Learning new technologies"
+    ]
+  },
+  "experiences": [
+    {
+      "id": "exp-1",
+      "title": "IT Intern",
+      "company": "E-JUST (Egypt-Japan University)",
+      "location": "Alexandria, Egypt",
+      "startDate": "2024",
+      "endDate": null,
+      "description": "Building internal university systems with Laravel and PHP. Working on backend development and database management.",
+      "skills": ["Laravel", "PHP", "MySQL", "Backend Development"]
+    },
+    {
+      "id": "exp-2",
+      "title": "DEPI Trainee",
+      "company": "Digital Egypt Pioneers Initiative",
+      "location": "Egypt",
+      "startDate": "2024",
+      "endDate": null,
+      "description": "Intensive Android development training program. Building native Android applications using Kotlin and Java.",
+      "skills": ["Kotlin", "Java", "Android SDK", "Mobile Development"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-1",
+      "name": "Project U",
+      "description": "University Recommender System",
+      "longDescription": "A Python/Flask web application that helps students find suitable universities based on their preferences and qualifications. Uses machine learning algorithms to match students with universities.",
+      "technologies": ["Python", "Flask", "Machine Learning", "Web Scraping"],
+      "githubUrl": "https://github.com/Amr-Ma7moud/project-u",
+      "liveUrl": null,
+      "imageUrl": null,
+      "featured": true
+    },
+    {
+      "id": "proj-2",
+      "name": "Task Manager",
+      "description": "System Monitor Application",
+      "longDescription": "An Electron/Python desktop application for monitoring system resources and managing tasks. Provides real-time CPU, memory, and process information.",
+      "technologies": ["Electron", "Python", "JavaScript", "System APIs"],
+      "githubUrl": "https://github.com/Amr-Ma7moud/task-manager",
+      "liveUrl": null,
+      "imageUrl": null,
+      "featured": true
+    },
+    {
+      "id": "proj-3",
+      "name": "Course Catalog",
+      "description": "Course Search Engine",
+      "longDescription": "A PHP/Laravel web application for searching and filtering university courses. Features advanced search capabilities and course recommendations.",
+      "technologies": ["PHP", "Laravel", "MySQL", "Bootstrap"],
+      "githubUrl": "https://github.com/Amr-Ma7moud/course-catalog",
+      "liveUrl": null,
+      "imageUrl": null,
+      "featured": false
+    },
+    {
+      "id": "proj-4",
+      "name": "Diff Eq Solver",
+      "description": "Differential Equations Solver",
+      "longDescription": "A MATLAB application for solving various types of differential equations with visualization. Supports multiple solving methods and provides graphical outputs.",
+      "technologies": ["MATLAB", "Numerical Methods", "Mathematics"],
+      "githubUrl": "https://github.com/Amr-Ma7moud/diff-eq-solver",
+      "liveUrl": null,
+      "imageUrl": null,
+      "featured": false
+    }
+  ],
+  "skills": [
+    {
+      "category": "Languages",
+      "items": ["Python", "Java", "C++", "PHP", "JavaScript", "TypeScript", "Kotlin"]
+    },
+    {
+      "category": "Backend",
+      "items": ["Flask", "Laravel", "Express", "Node.js"]
+    },
+    {
+      "category": "Frontend",
+      "items": ["React", "Next.js", "Tailwind CSS", "HTML/CSS"]
+    },
+    {
+      "category": "Mobile",
+      "items": ["Android (Kotlin/Java)", "React Native"]
+    },
+    {
+      "category": "Databases",
+      "items": ["MySQL", "PostgreSQL", "MongoDB", "Firebase"]
+    },
+    {
+      "category": "Tools",
+      "items": ["Git", "Docker", "Linux", "MATLAB", "VS Code"]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "ach-1",
+      "title": "ISF Scholarship Recipient",
+      "description": "Awarded full scholarship for academic excellence",
+      "date": "2023",
+      "icon": "🏆"
+    },
+    {
+      "id": "ach-2",
+      "title": "DEPI Android Development Program",
+      "description": "Selected for intensive Android training program",
+      "date": "2024",
+      "icon": "📱"
+    },
+    {
+      "id": "ach-3",
+      "title": "E-JUST IT Department Intern",
+      "description": "Backend development with Laravel",
+      "date": "2024",
+      "icon": "💻"
+    },
+    {
+      "id": "ach-4",
+      "title": "Dean's List",
+      "description": "Maintained GPA above 3.5 for multiple semesters",
+      "date": "2023-2024",
+      "icon": "📚"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Egypt-Japan University of Science and Technology (E-JUST)",
+      "degree": "Bachelor of Science",
+      "field": "Computer Science",
+      "gpa": "3.58",
+      "startDate": "2023",
+      "endDate": "2027"
+    }
+  ],
+  "lastUpdated": "2024-12-28T00:00:00.000Z"
+}
