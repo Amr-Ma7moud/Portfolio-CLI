@@ -116,7 +116,21 @@
       "liveUrl": null,
       "imageUrl": null,
       "featured": false
-    }
+    },
+    {
+      "description": "where you can love you university",
+      "featured": true,
+      "githubUrl": "https://github.com/Amr-Ma7moud/CampusConnect.git",
+      "id": "proj-5",
+      "longDescription": "A way to make the student  connect with thier university ,clubs and facilities",
+      "name": "Campus Connect",
+      "technologies": [
+        "Node JS",
+        "ExpressJS",
+        "MariaDB",
+        "System Design"
+  ]
+  }
   ],
   "skills": [
     {
