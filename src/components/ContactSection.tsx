@@ -1,13 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
 import TypewriterText from './TypewriterText';
-import { Mail, Phone, Github, Globe } from 'lucide-react';
+import { Mail, Phone, Github, Globe, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+
+// TODO: Update this URL after deploying the backend to Vercel
+const API_URL = import.meta.env.VITE_CONTACT_API_URL || 'https://your-vercel-project.vercel.app';
 
 const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const { toast } = useToast();
 
@@ -28,15 +32,45 @@ const ContactSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: '[SUCCESS] Message sent!',
-      description: 'Thanks for reaching out. I\'ll get back to you soon.',
-    });
-    setName('');
-    setEmail('');
-    setMessage('');
+    
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+      
+      toast({
+        title: '[SUCCESS] Message sent!',
+        description: 'Thanks for reaching out. I\'ll get back to you soon.',
+      });
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast({
+        title: '[ERROR] Failed to send message',
+        description: error instanceof Error ? error.message : 'Please try again later.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -155,9 +189,17 @@ const ContactSection = () => {
 
                   <button
                     type="submit"
-                    className="w-full bg-primary text-primary-foreground py-2 text-sm font-medium hover:bg-primary/90 transition-colors"
+                    disabled={isSubmitting}
+                    className="w-full bg-primary text-primary-foreground py-2 text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    {'>'} SEND_MESSAGE
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        SENDING...
+                      </>
+                    ) : (
+                      <>{'>'}  SEND_MESSAGE</>
+                    )}
                   </button>
                 </form>
               </div>
