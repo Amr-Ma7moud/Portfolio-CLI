@@ -3,8 +3,8 @@ import TypewriterText from './TypewriterText';
 import { Mail, Phone, Github, Globe, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-// TODO: Update this URL after deploying the backend to Vercel
-const API_URL = import.meta.env.VITE_CONTACT_API_URL || 'https://your-vercel-project.vercel.app';
+// Contact form API endpoint (Vercel serverless function)
+const API_URL = import.meta.env.VITE_CONTACT_API_URL || 'https://portfolio-email-backend-seven.vercel.app';
 
 const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);

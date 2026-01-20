@@ -35,34 +35,72 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
+    const timestamp = new Date().toISOString();
+    const loginTime = new Date().toUTCString();
+    const escapedMessage = message.replace(/\n/g, '\\n').replace(/"/g, '\\"');
+
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
       to: TO_EMAIL,
       replyTo: email,
-      subject: `Portfolio Contact: Message from ${name}`,
+      subject: `[NEW_MESSAGE] from ${name}`,
       html: `
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #22c55e; border-bottom: 2px solid #22c55e; padding-bottom: 10px;">
-            📬 New Contact Form Submission
-          </h2>
-          
-          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p style="margin: 0 0 10px 0;">
-              <strong style="color: #374151;">From:</strong> ${name}
-            </p>
-            <p style="margin: 0 0 10px 0;">
-              <strong style="color: #374151;">Email:</strong> 
-              <a href="mailto:${email}" style="color: #22c55e;">${email}</a>
-            </p>
+        <div style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace; background: #0a0a0a; color: #e5e5e5; padding: 0; margin: 0;">
+          <!-- Terminal Window -->
+          <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 8px; margin: 20px; overflow: hidden;">
+            <!-- Terminal Header -->
+            <div style="background: #2d2d2d; padding: 10px 15px; border-bottom: 1px solid #333;">
+              <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #ff5f56; margin-right: 8px;"></span>
+              <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e; margin-right: 8px;"></span>
+              <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #27ca40; margin-right: 8px;"></span>
+              <span style="color: #888; font-size: 12px; margin-left: 10px;">contact_form.sh — bash</span>
+            </div>
+            
+            <!-- Terminal Body -->
+            <div style="padding: 20px; line-height: 1.8;">
+              <p style="margin: 0; color: #888;">Last login: ${loginTime}</p>
+              <br/>
+              
+              <p style="margin: 0;">
+                <span style="color: #22c55e;">amr@portfolio</span><span style="color: #888;">:</span><span style="color: #3b82f6;">~/inbox</span><span style="color: #888;">$</span> 
+                <span style="color: #e5e5e5;">cat new_message.json</span>
+              </p>
+              <br/>
+              
+              <div style="background: #0d0d0d; border: 1px solid #333; border-radius: 4px; padding: 15px; margin: 10px 0;">
+                <p style="margin: 0; color: #888;">{</p>
+                <p style="margin: 0; padding-left: 20px;">
+                  <span style="color: #f472b6;">"sender"</span><span style="color: #888;">:</span> <span style="color: #fbbf24;">"${name}"</span><span style="color: #888;">,</span>
+                </p>
+                <p style="margin: 0; padding-left: 20px;">
+                  <span style="color: #f472b6;">"email"</span><span style="color: #888;">:</span> <span style="color: #fbbf24;">"${email}"</span><span style="color: #888;">,</span>
+                </p>
+                <p style="margin: 0; padding-left: 20px;">
+                  <span style="color: #f472b6;">"timestamp"</span><span style="color: #888;">:</span> <span style="color: #fbbf24;">"${timestamp}"</span><span style="color: #888;">,</span>
+                </p>
+                <p style="margin: 0; padding-left: 20px;">
+                  <span style="color: #f472b6;">"message"</span><span style="color: #888;">:</span> <span style="color: #fbbf24;">"${escapedMessage}"</span>
+                </p>
+                <p style="margin: 0; color: #888;">}</p>
+              </div>
+              <br/>
+              
+              <p style="margin: 0;">
+                <span style="color: #22c55e;">amr@portfolio</span><span style="color: #888;">:</span><span style="color: #3b82f6;">~/inbox</span><span style="color: #888;">$</span> 
+                <span style="color: #e5e5e5;">echo "Reply to: ${email}"</span>
+              </p>
+              <p style="margin: 0; color: #22c55e;">Reply to: <a href="mailto:${email}" style="color: #22c55e;">${email}</a></p>
+              <br/>
+              
+              <p style="margin: 0;">
+                <span style="color: #22c55e;">amr@portfolio</span><span style="color: #888;">:</span><span style="color: #3b82f6;">~/inbox</span><span style="color: #888;">$</span> 
+                <span style="color: #888;">█</span>
+              </p>
+            </div>
           </div>
           
-          <div style="background: #1a1a1a; color: #e5e5e5; padding: 20px; border-radius: 8px; font-family: 'Monaco', 'Menlo', monospace;">
-            <p style="margin: 0 0 10px 0; color: #22c55e;">$ cat message.txt</p>
-            <p style="margin: 0; white-space: pre-wrap; line-height: 1.6;">${message}</p>
-          </div>
-          
-          <p style="color: #6b7280; font-size: 12px; margin-top: 20px; text-align: center;">
-            This message was sent from your portfolio contact form.
+          <p style="color: #555; font-size: 11px; text-align: center; padding: 10px;">
+            // Sent from amr-mahmoud.dev contact form
           </p>
         </div>
       `,
